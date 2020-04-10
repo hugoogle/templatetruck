@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div id="json"></div>
+<input type="text" id="jsonIn">
+
+</body>
+
+<script>
+
+window.onload = function(){
+    var request = new XMLHttpRequest();
+
+    var div = document.getElementById('json');
+    var data = document.getElementById('jsonIn');
+  
+
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);  
+           // div.innerHTML = this.responseText;
+           //div.innerHTML = this.responseXML;
+          // myFunction(this);
+
+            let res = JSON.parse(this.responseText);
+            //console.log(res);
+            let name = res.name;
+
+            for(let i=0; i < name.length; i ++){
+                console.log(name);
+                div.innerHTML = name;
+                data.value =  name;
+ 
+            }
+
+
+
+        }
+    };
+
+    request.open('GET', 'https://jsonplaceholder.typicode.com/users/1');
+    request.send();
+
+
+}
+
+
+
+function myFunction(xml) {
+  var x, i, xmlDoc, txt;
+  xmlDoc = xml.responseXML;
+  txt = "";
+  x = xmlDoc.getElementsByTagName("name");
+  for (i = 0; i< x.length; i++) {
+    txt += x[i].childNodes[0].nodeValue + "<br>";
+  }
+  document.getElementById('json').innerHTML = txt;
+}
+
+/* function readBody(xhr) {
+    var data;
+    var div = document.getElementById('json');
+ 
+    if (!xhr.responseType || xhr.responseType === "text") {
+        data = xhr.responseText;
+    } else if (xhr.responseType === "document") {
+        data = xhr.responseXML;
+    } else {
+        data = xhr.response;
+    }
+    return data;
+
+
+}
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        console.log(readBody(xhr));
+ 
+    }
+}
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/users/1', true);
+xhr.send(null);
+
+*/
+
+
+
+</script>
+</html>

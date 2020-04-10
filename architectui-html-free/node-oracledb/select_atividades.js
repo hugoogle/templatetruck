@@ -57,7 +57,7 @@ async function run() {
 
     connection = await oracledb.getConnection(dbConfig);
 
- //   await demoSetup.setupBf(connection);  // create the demo table
+  //  await demoSetup.setupBf(connection);  // create the demo table
 
     // The statement to execute
     const sql =
