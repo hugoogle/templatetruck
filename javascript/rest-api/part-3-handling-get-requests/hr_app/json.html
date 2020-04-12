@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<div id="json"></div>
+<input type="text" id="jsonIn">
+
+</body>
+
+<!--<script src="/oracle-db-examples-master/oracle-db-examples-master/javascript/rest-api/part-3-handling-get-requests/hr_app/index.js"></script>
+-->
+<script>
+
+window.onload = function(){
+    var request = new XMLHttpRequest();
+
+    var div = document.getElementById('json');
+    var data = document.getElementById('jsonIn');
+  
+
+
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);  
+           // div.innerHTML = this.responseText;
+           //div.innerHTML = this.responseXML;
+          // myFunction(this);
+
+            let res = JSON.parse(this.responseText);
+            //console.log(res);
+            let descricao = res.descricao;
+
+            for(let i=0; i < descricao.length; i ++){
+                console.log(descricao);
+                div.innerHTML = descricao;
+                data.value =  descricao;
+ 
+            }
+
+
+
+        }
+    };
+
+    request.open('GET', 'http://127.0.0.1:3000/api/employees/1');
+    request.send();
+
+
+}
+
+
+
+function myFunction(xml) {
+  var x, i, xmlDoc, txt;
+  xmlDoc = xml.responseXML;
+  txt = "";
+  x = xmlDoc.getElementsByTagName("name");
+  for (i = 0; i< x.length; i++) {
+    txt += x[i].childNodes[0].nodeValue + "<br>";
+  }
+  document.getElementById('json').innerHTML = txt;
+}
+
+/* function readBody(xhr) {
+    var data;
+    var div = document.getElementById('json');
+ 
+    if (!xhr.responseType || xhr.responseType === "text") {
+        data = xhr.responseText;
+    } else if (xhr.responseType === "document") {
+        data = xhr.responseXML;
+    } else {
+        data = xhr.response;
+    }
+    return data;
+
+
+}
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4) {
+        console.log(readBody(xhr));
+ 
+    }
+}
+xhr.open('GET', 'https://jsonplaceholder.typicode.com/users/1', true);
+xhr.send(null);
+
+*/
+
+
+
+</script>
+</html>
