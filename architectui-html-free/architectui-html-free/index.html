@@ -78,12 +78,25 @@
                         </div>
                         <button class="close"></button>
                     </div>
+
+                    
                     <ul class="header-menu nav">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">
+                            <a  class="nav-link">
                             <!--    <i class="nav-link-icon fa fa-database"> </i>-->
-                                EQUIPE TRUCK  
-                            </a>
+                                EQUIPE   
+                              
+
+                            <select id="equipeSelect" onchange="cria()">
+                              <option value="1">TRUCK
+                              <option value="3">AGUIA
+                            </select>
+                            
+                          <!--  <p id="demo"></p>-->
+                            
+
+
+
                         </li>
                         <li class="btn-group nav-item">
                             <a href="dashboard.html" class="nav-link">
@@ -1410,19 +1423,13 @@
                             </div> -->
                             
                             
-    <div id="app" >
-        <div id="chart">
+    <div id="app" style="width: 750px;">
+        <div id="chart" style="width: 750px;">
         <apexchart type="line" width="750" height="280" :options="chartOptions" :series="series"></apexchart>
       </div>
       </div>
-  
       <!-- Below element is just for displaying source code. it is not required. DO NOT USE -->
-      <div id="html">
-        &lt;div id=&quot;chart&quot;&gt;
-          &lt;apexchart type=&quot;line&quot;  width=&quot;750&quot; height=&quot;280&quot; :options=&quot;chartOptions&quot; :series=&quot;series&quot;&gt;&lt;/apexchart&gt;
-        &lt;/div&gt;
-      </div>
-
+    
 
 
                         
@@ -1765,8 +1772,13 @@
 
 </body>
 
- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>
-    <script type="text/javascript" src="./assets/dashboard/metaChart.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+ <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts"></script>  
+
+ <script data-main="./assets/dashboard/api/meta" src="./assets/scripts/require.js"></script> 
+
+<script type="text/javascript" src="./assets/dashboard/metaChart.js"></script>
 </html>
