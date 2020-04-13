@@ -1,18 +1,24 @@
-﻿function generatedata(rowscount, hasNullValues) {
+﻿function generatedatas(rowscount, hasNullValues) {
     // prepare the data
     var data = new Array();
     if (rowscount == undefined) rowscount = 100;
-    var firstNames =
+    var nomes =
     [
         "Andrew", "Nancy", "Shelley", "Regina", "Yoshi", "Antoni", "Mayumi", "Ian", "Peter", "Lars", "Petra", "Martin", "Sven", "Elio", "Beate", "Cheryl", "Michael", "Guylene"
     ];
 
-    var lastNames =
+    var tipos =
     [
         "Fuller", "Davolio", "Burke", "Murphy", "Nagase", "Saavedra", "Ohno", "Devling", "Wilson", "Peterson", "Winkler", "Bein", "Petersen", "Rossi", "Vileid", "Saylor", "Bjorn", "Nodier"
     ];
 
-    var productNames =
+    
+    var equipes =
+    [
+        "Black Tea", "Green Tea", "Caffe Espresso", "Doubleshot Espresso", "Caffe Latte", "White Chocolate Mocha", "Caramel Latte", "Caffe Americano", "Cappuccino", "Espresso Truffle", "Espresso con Panna", "Peppermint Mocha Twist"
+    ];
+
+    var funcoes =
     [
         "Black Tea", "Green Tea", "Caffe Espresso", "Doubleshot Espresso", "Caffe Latte", "White Chocolate Mocha", "Caramel Latte", "Caffe Americano", "Cappuccino", "Espresso Truffle", "Espresso con Panna", "Peppermint Mocha Twist"
     ];
@@ -24,31 +30,35 @@
 
     for (var i = 0; i < rowscount; i++) {
         var row = {};
-        var productindex = Math.floor(Math.random() * productNames.length);
-        var price = parseFloat(priceValues[productindex]);
-        var quantity = 1 + Math.round(Math.random() * 10);
-
-        row["id"] = i;
-        row["available"] = productindex % 2 == 0;
+        var funcaoindex = Math.floor(Math.random() * funcoes.length);
+        var equipeindex = Math.floor(Math.random() * equipes.length);
+       // var price = parseFloat(priceValues[funcaoindex]);
+        var ticket = 1 + Math.round(Math.random() * 10);
+        var tipoindex = Math.floor(Math.random() * tipos.length);
+        
+      /*  row["id"] = i;
+        row["available"] = funcaoindex % 2 == 0;
         if (hasNullValues == true) {
-            if (productindex % 2 != 0) {
+            if (funcaoindex % 2 != 0) {
                 var random = Math.floor(Math.random() * rowscount);
                 row["available"] = i % random == 0 ? null : false;
             }
-        }
-        row["firstname"] = firstNames[Math.floor(Math.random() * firstNames.length)];
-        row["lastname"] = lastNames[Math.floor(Math.random() * lastNames.length)];
-        row["name"] = row["firstname"] + " " + row["lastname"]; 
-        row["productname"] = productNames[productindex];
-        row["price"] = price;
-        row["quantity"] = quantity;
-        row["total"] = price * quantity;
+        }*/
+        row["nome"] = nomes[Math.floor(Math.random() * nomes.length)];
+       // row["lastname"] = lastNames[Math.floor(Math.random() * lastNames.length)];
+       // row["name"] = row["firstname"] + " " + row["lastname"]; 
+        row["equipe"] = equipes[equipeindex];
+        row["funcao"] = funcoes[funcaoindex];
+       // row["price"] = price;
+        row["ticket"] = ticket;
+        row["tipo"] = tipos[tipoindex];;
+        //row["total"] = price * ticket;
 
-        var date = new Date();
+       /* var date = new Date();
         date.setFullYear(date.getFullYear(), Math.floor(Math.random() * 12), Math.floor(Math.random() * 27));
         date.setHours(0, 0, 0, 0);
         row["date"] = date;
-       
+       */
         data[i] = row;
     }
 
