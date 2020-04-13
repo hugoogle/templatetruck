@@ -73,7 +73,8 @@
                     [
                         { name: 'firstname', type: 'string' },
                         { name: 'lastname', type: 'string' },
-                        { name: 'productname', type: 'string' },
+                        { name: 'equipe', type: 'string' },      
+                        { name: 'funcao', type: 'string' },
                         { name: 'available', type: 'bool' },
                         { name: 'quantity', type: 'number' },
                         { name: 'price', type: 'number' },
@@ -86,15 +87,16 @@
             // initialize jqxGrid
             $("#grid").jqxGrid(
                 {
-                    width: getWidth('Grid'),
+                    width: '100%',
                     source: dataAdapter,
                     editable: true,
                     selectionmode: 'singlerow',
                     editmode: 'selectedrow',
                     columns: [
-                        { text: 'First Name', columntype: 'textbox', datafield: 'firstname', width: 80 },
+                        { text: 'Nome', columntype: 'textbox', datafield: 'firstname', width: 80 },
                         { text: 'Last Name', datafield: 'lastname', columntype: 'textbox', width: 80 },
-                        { text: 'Product', columntype: 'dropdownlist', datafield: 'productname', width: 195 },
+                        { text: 'Equipe', columntype: 'dropdownlist', datafield: 'equipe', width: 195 },
+                        { text: 'Função', columntype: 'dropdownlist', datafield: 'funcao', width: 195 },
                         { text: 'Available', datafield: 'available', columntype: 'checkbox', width: 67 },
                         {
                             text: 'Ship Date', datafield: 'date', columntype: 'datetimeinput', width: 110, align: 'right', cellsalign: 'right', cellsformat: 'd',
@@ -185,7 +187,7 @@
             <div class="app-header__mobile-menu">
                 <div>
                     <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                        <span class="hamburger-box">
+                        <span class="hamburger-box"></span>
                             <span class="hamburger-inner"></span>
                         </span>
                     </button>
@@ -919,19 +921,37 @@
                                 <div class="card-body">
                                     <form class="needs-validation" novalidate>
                                         <div class="form-row">
-                                            <div class="col-md-5 mb-5">
+                                            <div class="col-md-4 mb-4">
                                                 <label for="validationTooltip01">Nome</label>
-                                                <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required >
+                                                <input type="text" class="form-control" id="validationTooltip01" placeholder="Informe o Nome"  required >
                                                 <!--<div class="valid-tooltip">
                                                     OK!
                                                 </div> -->
                                             </div>
                                             <div class="col-md-1 mb-2">
+                                                <label for="validationTooltip02">Equipe</label>
+                                               <!-- <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>-->
+                                                <div class="dropdown ">
+                                                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
+                                                    width: 120%;">TRUCK</button>
+                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                                        <button type="button" tabindex="0" class="dropdown-item">AGUIA</button>
+                                                        <button type="button" tabindex="0" class="dropdown-item">TAURUS</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="valid-tooltip">
+                                                    Looks good!
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-1 mb-2">
                                                 <label for="validationTooltip02">Função</label>
                                                <!-- <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>-->
                                                 <div class="dropdown ">
                                                     <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
-                                                    width: 120%;">Developer</button>
+                                                    width: 120%; margin-left: 15px;">Developer</button>
                                                     <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                                         <button type="button" tabindex="0" class="dropdown-item">PO</button>
                                                         <button type="button" tabindex="0" class="dropdown-item">Tester</button>
@@ -944,10 +964,13 @@
                                                 </div>
                                             </div>
 
+
+
+
                                             <div class="col-md-3 mb-3">
                                                 <label for="validationTooltip05" style="margin-left: 15px;">Ticket</label>
-                                                <input type="text" class="form-control" id="validationTooltip05" placeholder="Zip" required style="
-                                                margin-left: 15px;">
+                                                <input type="text" class="form-control" id="validationTooltip05" placeholder="Informe o numero" required style="
+                                                margin-left: 30px;">
                                                 <div class="invalid-tooltip" style="left: 25px;top: 70px;">
                                                     Informe o numero do Ticket.
                                                 </div>
@@ -958,7 +981,7 @@
                                                <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>-->
                                                <div class="dropdown ">
                                                 <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
-                                                width: 120%;margin-left: 15px;">BUG</button>
+                                                width: 120%;margin-left: 30px;">BUG</button>
                                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                                     <button type="button" tabindex="0" class="dropdown-item">META</button>
                                                     <button type="button" tabindex="0" class="dropdown-item">BAIXO</button>
@@ -972,7 +995,7 @@
                                             </div>
                                        
                                             <div class="col-md-2 mb-2">
-                                                <button class="btn btn-primary" style="left: 40px;top: 30px; width: 106px;" type="submit">Incluir</button>
+                                                <button class="btn btn-primary" style="left: 50px;top: 30px; width: 106px;" type="submit">Incluir</button>
                                                
 
                                             </div>
@@ -984,6 +1007,23 @@
                                     </form>
                                 </div>
                             </div>
+
+
+                            <div class="main-card mb-3 card">
+                                <div class="card-body">
+                        
+                    <div id='jqxWidget'>
+                        <div id="grid" style="width: 100%;"></div>
+                        <div
+                            style="font-size: 12px; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; margin-top: 30px;">
+                            <div id="cellbegineditevent"></div>
+                            <div style="margin-top: 10px;" id="cellendeditevent"></div>
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
                         
@@ -993,14 +1033,6 @@
                 </div>
                 <div class="row">
 
-                    <div id='jqxWidget'>
-                        <div id="grid"></div>
-                        <div
-                            style="font-size: 12px; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; margin-top: 30px;">
-                            <div id="cellbegineditevent"></div>
-                            <div style="margin-top: 10px;" id="cellendeditevent"></div>
-                        </div>
-                    </div>
                 </div>
 
 

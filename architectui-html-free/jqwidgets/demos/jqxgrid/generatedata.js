@@ -2,7 +2,7 @@
     // prepare the data
     var data = new Array();
     if (rowscount == undefined) rowscount = 100;
-    var firstNames =
+    var nome =
     [
         "Andrew", "Nancy", "Shelley", "Regina", "Yoshi", "Antoni", "Mayumi", "Ian", "Peter", "Lars", "Petra", "Martin", "Sven", "Elio", "Beate", "Cheryl", "Michael", "Guylene"
     ];
@@ -12,7 +12,13 @@
         "Fuller", "Davolio", "Burke", "Murphy", "Nagase", "Saavedra", "Ohno", "Devling", "Wilson", "Peterson", "Winkler", "Bein", "Petersen", "Rossi", "Vileid", "Saylor", "Bjorn", "Nodier"
     ];
 
-    var productNames =
+    
+    var equipes =
+    [
+        "Black Tea", "Green Tea", "Caffe Espresso", "Doubleshot Espresso", "Caffe Latte", "White Chocolate Mocha", "Caramel Latte", "Caffe Americano", "Cappuccino", "Espresso Truffle", "Espresso con Panna", "Peppermint Mocha Twist"
+    ];
+
+    var funcoes =
     [
         "Black Tea", "Green Tea", "Caffe Espresso", "Doubleshot Espresso", "Caffe Latte", "White Chocolate Mocha", "Caramel Latte", "Caffe Americano", "Cappuccino", "Espresso Truffle", "Espresso con Panna", "Peppermint Mocha Twist"
     ];
@@ -24,22 +30,24 @@
 
     for (var i = 0; i < rowscount; i++) {
         var row = {};
-        var productindex = Math.floor(Math.random() * productNames.length);
-        var price = parseFloat(priceValues[productindex]);
+        var funcaoindex = Math.floor(Math.random() * funcoes.length);
+        var equipeindex = Math.floor(Math.random() * equipes.length);
+        var price = parseFloat(priceValues[funcaoindex]);
         var quantity = 1 + Math.round(Math.random() * 10);
 
         row["id"] = i;
-        row["available"] = productindex % 2 == 0;
+        row["available"] = funcaoindex % 2 == 0;
         if (hasNullValues == true) {
-            if (productindex % 2 != 0) {
+            if (funcaoindex % 2 != 0) {
                 var random = Math.floor(Math.random() * rowscount);
                 row["available"] = i % random == 0 ? null : false;
             }
         }
-        row["firstname"] = firstNames[Math.floor(Math.random() * firstNames.length)];
+        row["firstname"] = nome[Math.floor(Math.random() * nome.length)];
         row["lastname"] = lastNames[Math.floor(Math.random() * lastNames.length)];
         row["name"] = row["firstname"] + " " + row["lastname"]; 
-        row["productname"] = productNames[productindex];
+        row["equipe"] = equipes[equipeindex];
+        row["funcao"] = funcoes[funcaoindex];
         row["price"] = price;
         row["quantity"] = quantity;
         row["total"] = price * quantity;
