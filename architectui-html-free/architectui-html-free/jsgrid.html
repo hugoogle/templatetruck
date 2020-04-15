@@ -16,6 +16,29 @@
     <meta name="msapplication-tap-highlight" content="no">
 
 
+    <!-- JSGRID-->
+    <link rel="stylesheet" type="text/css" href="../jsgrid-master/css/demo.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="../jsgrid-master/css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="../jsgrid-master/css/theme.css" />
+
+    <script src="../jsgrid-master/external/jquery/jquery-1.8.3.js"></script>
+    <script src="assets/scripts/controller/db.js"></script>
+
+    <script src="../jsgrid-master/src/jsgrid.core.js"></script>
+    <script src="../jsgrid-master/src/jsgrid.load-indicator.js"></script>
+    <script src="../jsgrid-master/src/jsgrid.load-strategies.js"></script>
+    <script src="../jsgrid-master/src/jsgrid.sort-strategies.js"></script>
+    <script src="../jsgrid-master/src/jsgrid.field.js"></script>
+    <script src="../jsgrid-master/src/fields/jsgrid.field.text.js"></script>
+    <script src="../jsgrid-master/src/fields/jsgrid.field.number.js"></script>
+    <script src="../jsgrid-master/src/fields/jsgrid.field.select.js"></script>
+    <script src="../jsgrid-master/src/fields/jsgrid.field.checkbox.js"></script>
+    <script src="../jsgrid-master/src/fields/jsgrid.field.control.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+
     <!--
         =========================================================
         * ArchitectUI HTML Theme Dashboard - v1.0.0
@@ -35,156 +58,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
 
     <!--GRID-->
-    <link rel="stylesheet" href="../jqwidgets/styles/jqx.light.css" type="text/css" />
-    <script type="text/javascript" src="../jqwidgets/scripts/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxdata.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxgrid.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxgrid.edit.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxgrid.selection.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxlistbox.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxdropdownlist.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxcheckbox.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxcalendar.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxnumberinput.js"></script>
-    <script type="text/javascript" src="../jqwidgets/jqxdatetimeinput.js"></script>
-    <script type="text/javascript" src="../jqwidgets/globalization/globalize.js"></script>
-    <script type="text/javascript" src="../jqwidgets/scripts/demos.js"></script>
-    <script type="text/javascript" src="../jqwidgets/demos/jqxgrid/generatedatas.js"></script>
-    <script>
-        $(document).ready(function () {
-            // prepare the data
-            var data = generatedatas(5);
-
-            var source =
-            {
-                localdata: data,
-                datatype: "array",
-                updaterow: function (rowid, rowdata, commit) {
-                    // synchronize with the server - send update command
-                    // call commit with parameter true if the synchronization with the server is successful 
-                    // and with parameter false if the synchronization failder.
-                    commit(true);
-                },
-                datafields:
-                    [
-                        { name: 'nome', type: 'string' },
-                        { name: 'equipe', type: 'string' },      
-                        { name: 'funcao', type: 'string' },
-                        { name: 'ticket', type: 'number' },
-                        { name: 'tipo', type: 'string' },
-                       // { name: 'available', type: 'bool' },
-                       // { name: 'price', type: 'number' },
-                      //  { name: 'date', type: 'date' }
-                    ],
-
-                    addrow: function (rowid, rowdata, position, commit) {
-                    // synchronize with the server - send insert command
-                    // call commit with parameter true if the synchronization with the server is successful 
-                    //and with parameter false if the synchronization failed.
-                    // you can pass additional argument to the commit callback which represents the new ID if it is generated from a DB.
-                    commit(true);
-                },
-
-            };
-
-            var dataAdapter = new $.jqx.dataAdapter(source);
-
-            // initialize jqxGrid
-            $("#grid").jqxGrid(
-                {
-                    width: '100%',
-                    source: dataAdapter,
-                    editable: true,
-                    selectionmode: 'singlerow',
-                    editmode: 'selectedrow',
-                    columns: [
-                        { text: 'Nome', columntype: 'textbox', datafield: 'nome', width: 400 },
-                        { text: 'Equipe', columntype: 'dropdownlist', datafield: 'equipe', width: 195 },
-                        { text: 'Função', columntype: 'dropdownlist', datafield: 'funcao', width: 195 },
-                        /*{ text: 'Available', datafield: 'available', columntype: 'checkbox', width: 67 },
-                        {
-                            text: 'Ship Date', datafield: 'date', columntype: 'datetimeinput', width: 110, align: 'right', cellsalign: 'right', cellsformat: 'd',
-                            validation: function (cell, value) {
-                                if (value == "")
-                                    return true;
-
-                                var year = value.getFullYear();
-                                if (year >= 2017) {
-                                    return { result: false, message: "Ship Date should be before 1/1/2017" };
-                                }
-                                return true;
-                            }
-                        },*/
-                        
-                        {
-                            text: 'Ticket', datafield: 'ticket', width: 250, align: 'right', cellsalign: 'right', columntype: 'numberinput',
-                            validation: function (cell, value) {
-                                if (value < 0 || value > 999999) {
-                                    return { result: false, message: "Informe um numero entre 0 e 9999" };
-                                }
-                                return true;
-                            },
-                            createeditor: function (row, cellvalue, editor) {
-                                editor.jqxNumberInput({ decimalDigits: 0, digits: 6 });
-                            }
-                        },
-                        { text: 'Tipo', datafield: 'tipo', columntype: 'dropdownlist', width: 150 }, 
-              
-                        /*  {
-                            text: 'Price', datafield: 'price', align: 'right', cellsalign: 'right', cellsformat: 'c2', columntype: 'numberinput',
-                            validation: function (cell, value) {
-                                if (value < 0 || value > 15) {
-                                    return { result: false, message: "Price should be in the 0-15 interval" };
-                                }
-                                return true;
-                            },
-                            createeditor: function (row, cellvalue, editor) {
-                                editor.jqxNumberInput({ digits: 3 });
-                            }
-
-                        }*/
-                    ]
-                });
-
-            // events
-            var rowValues = "";
-            $("#grid").on('cellbeginedit', function (event) {
-                var args = event.args;
-                if (args.datafield === "nome") {
-                    rowValues = "";
-                }
-                rowValues += args.value.toString() + "    ";
-            
-            
-                 if (args.datafield === "ticket") {
-                    $("#cellbegineditevent").text("Begin Row Edit: " + (1 + args.rowindex) + ", Data: " + rowValues);
-                
-                
-                }
-            });
-
-             // create new row.
-             $("#addrowbutton").on('click', function () {
-                        var datarow = generaterow();
-                        var commit = $("#grid").jqxGrid('addrow', null, datarow);
-                    });
-
-            $("#grid").on('cellendedit', function (event) {
-                var args = event.args;
-                if (args.datafield === "nome") {
-                    rowValues = "";
-                }
-               rowValues += args.value.toString() + "    ";
-               if (args.datafield === "ticket") {
-                    $("#cellbegineditevent").text("End Row Edit: " + (1 + args.rowindex) + ", Data: " + rowValues);
-                }
-            });
-        });
-    </script>
+   
 
 
 </head>
@@ -900,166 +774,135 @@
                 </div>
             </div>
             <div class="app-main__outer">
-                <div class="app-main__inner"
-                    style="padding-top: 0px;padding-left: 0px; padding-right: 0px;padding-bottom: 0px;">
+           
 
-                    <div class="row">
-                        <div class="app-main__inner" style="padding-top: 0px;">
-                                    <h5>CADASTRO</h5>
-                              <div class="main-card mb-3 ">
-                           
-                                     <script>
-                                        // Example starter JavaScript for disabling form submissions if there are invalid fields
-                                        (function() {
-                                            'use strict';
-                                            window.addEventListener('load', function() {
-                                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                                                var forms = document.getElementsByClassName('needs-validation');
-                                                // Loop over them and prevent submission
-                                                var validation = Array.prototype.filter.call(forms, function(form) {
-                                                    form.addEventListener('submit', function(event) {
-                                                        if (form.checkValidity() === false) {
-                                                            event.preventDefault();
-                                                            event.stopPropagation();
-                                                        }
-                                                        form.classList.add('was-validated');
-                                                    }, false);
-                                                });
-                                            }, false);
-                                        })();
-                                    </script>
-                              
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            </div>
-                            
-                            
-                            
-                            <div class="main-card mb-3 card">
-                                <div class="card-body">
-                                    <form class="needs-validation" novalidate>
-                                        <div class="form-row">
-                                            <div class="col-md-4 mb-4">
-                                                <label for="validationTooltip01">Nome</label>
-                                                <input type="text" class="form-control" id="validationTooltip01" placeholder="Informe o Nome"  required >
-                                                <!--<div class="valid-tooltip">
-                                                    OK!
-                                                </div> -->
-                                            </div>
-                                            <div class="col-md-1 mb-2">
-                                                <label for="validationTooltip02">Equipe</label>
-                                               <!-- <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>-->
-                                                <div class="dropdown ">
-                                                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
-                                                    width: 120%;">TRUCK</button>
-                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                        <button type="button" tabindex="0" class="dropdown-item">AGUIA</button>
-                                                        <button type="button" tabindex="0" class="dropdown-item">TAURUS</button>
-                                                    </div>
-                                                </div>
-                                                
-                                                
-                                                <div class="valid-tooltip">
-                                                    Looks good!
-                                                </div>
-                                            </div>
+             <div id="jsGrid"></div>
 
-                                            <div class="col-md-1 mb-2">
-                                                <label for="validationTooltip02">Função</label>
-                                               <!-- <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>-->
-                                                <div class="dropdown ">
-                                                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
-                                                    width: 120%; margin-left: 15px;">Developer</button>
-                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                        <button type="button" tabindex="0" class="dropdown-item">PO</button>
-                                                        <button type="button" tabindex="0" class="dropdown-item">Tester</button>
-                                                    </div>
-                                                </div>
-                                                
-                                                
-                                                <div class="valid-tooltip">
-                                                    Looks good!
-                                                </div>
-                                            </div>
+    <div id="detailsDialogs">
+        <form id="detailsForm">
+            <div class="details-form-field">
+                <label for="name">Name:</label>
+                <input id="name" name="name" type="text" />
+            </div>
+            <div class="details-form-field">
+                <label for="age">Age:</label>
+                <input id="age" name="age" type="number" />
+            </div>
+            <div class="details-form-field">
+                <label for="address">Address:</label>
+                <input id="address" name="address" type="text" />
+            </div>
+            <div class="details-form-field">
+                <label for="country">Country:</label>
+                <select id="country" name="country">
+                    <option value="">(Select)</option>
+                    <option value="1">United States</option>
+                    <option value="2">Canada</option>
+                    <option value="3">United Kingdom</option>
+                    <option value="4">France</option>
+                    <option value="5">Brazil</option>
+                    <option value="6">China</option>
+                    <option value="7">Russia</option>
+                </select>
+            </div>
+            <div class="details-form-field">
+                <label for="married">Is Married</label>
+                <input id="married" name="married" type="checkbox" />
+            </div>
+            <div class="details-form-field">
+                <button type="submit" id="save">Save</button>
+            </div>
+        </form>
+    </div>
 
+    <script>
+        $(function() {
 
+            $("#jsGrid").jsGrid({
+                height: "70%",
+                width: "100%",
+                editing: true,
+                autoload: true,
+                paging: true,
+                deleteConfirm: function(item) {
+                    return "The client \"" + item.Name + "\" will be removed. Are you sure?";
+                },
+                rowClick: function(args) {
+                    showDetailsDialog("Edit", args.item);
+                },
+                controller: db,
+                fields: [
+                    { name: "Name", type: "text", width: 150 },
+                    { name: "Age", type: "number", width: 50 },
+                    { name: "Address", type: "text", width: 200 },
+                    { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+                    { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+                    {
+                        type: "control",
+                        modeSwitchButton: false,
+                        editButton: false,
+                        headerTemplate: function() {
+                            return $("<button>").attr("type", "button").text("Add")
+                                .on("click", function () {
+                                    showDetailsDialog("Add", {});
+                                });
+                        }
+                    }
+                ]
+            });
 
+            
+            $("#detailsForm").validate({
+                rules: {
+                    name: "required",
+                    age: { required: true, range: [18, 150] },
+                    address: { required: true, minlength: 10 },
+                    country: "required"
+                },
+                messages: {
+                    name: "Please enter name",
+                    age: "Please enter valid age",
+                    address: "Please enter address (more than 10 chars)",
+                    country: "Please select country"
+                },
+                submitHandler: function() {
+                    formSubmitHandler();
+                }
+            });
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="validationTooltip05" style="margin-left: 15px;">Ticket</label>
-                                                <input type="text" class="form-control" id="validationTooltip05" placeholder="Informe o numero" required style="
-                                                margin-left: 30px;">
-                                                <div class="invalid-tooltip" style="left: 25px;top: 70px;">
-                                                    Informe o numero do Ticket.
-                                                </div>
-                                            </div>
+            var formSubmitHandler = $.noop;
 
-                                            <div class="col-md-1 mb-2">
-                                                <label for="validationTooltip04">Tipo</label>
-                                               <!-- <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>-->
-                                               <div class="dropdown ">
-                                                <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" style="
-                                                width: 120%;margin-left: 30px;">BUG</button>
-                                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                                    <button type="button" tabindex="0" class="dropdown-item">META</button>
-                                                    <button type="button" tabindex="0" class="dropdown-item">BAIXO</button>
-                                                    <button type="button" tabindex="0" class="dropdown-item">MÉDIO</button>
-                                                    <button type="button" tabindex="0" class="dropdown-item">NÃO URGENTE</button>
-                                                    <button type="button" tabindex="0" class="dropdown-item">URGENTE</button>
+            var showDetailsDialog = function(dialogType, client) {
+                $("#name").val(client.Name);
+                $("#age").val(client.Age);
+                $("#address").val(client.Address);
+                $("#country").val(client.Country);
+                $("#married").prop("checked", client.Married);
 
-                                                </div>
-                                            </div>
-                                               
-                                            </div>
-                                       
-                                            <div class="col-md-2 mb-2">
-                                                <button class="btn btn-primary" id="addrowbutton" style="left: 50px;top: 30px; width: 106px;" >Incluir</button>
-                                               
+                formSubmitHandler = function() {
+                    saveClient(client, dialogType === "Add");
+                };
 
-                                            </div>
+               
+            };
 
-                                             
-                                       
-                                        </div>
-                                      
-                                    </form>
-                                </div>
-                            </div>
+            var saveClient = function(client, isNew) {
+                $.extend(client, {
+                    Name: $("#name").val(),
+                    Age: parseInt($("#age").val(), 10),
+                    Address: $("#address").val(),
+                    Country: parseInt($("#country").val(), 10),
+                    Married: $("#married").is(":checked")
+                });
 
+                $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", client);
 
-                            <div class="main-card mb-3 card">
-                                <div class="card-body">
-                        
-                    <div id='jqxWidget'>
-                        <div id="grid" style="width: 100%;"></div>
-                        <div
-                            style="font-size: 12px; font-family: Verdana, Geneva, 'DejaVu Sans', sans-serif; margin-top: 30px;">
-                            <div id="cellbegineditevent"></div>
-                            <div style="margin-top: 10px;" id="cellendeditevent"></div>
-                        </div>
-                    </div>
-                                </div>
-                            </div>
+            };
 
+        });
+    </script>
 
-                        </div>
-
-                        
-                    </div>
-
-
-                </div>
-                <div class="row">
-
-                </div>
-
-
+                
             </div>
         </div>
 
@@ -1068,5 +911,6 @@
 
 
 <script type="text/javascript" src="./assets/scripts/main.js"></script>
+
 
 </html>
