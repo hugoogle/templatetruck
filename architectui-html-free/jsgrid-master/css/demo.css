@@ -80,3 +80,24 @@ iframe[name='demo'] {
     height: 100%;
     border: none;
 }
+
+#funcao.mb-2.mr-2.dropdown-toggle.btn.btn-outline-primary{
+
+    padding-bottom: 10px;
+    width:100%;
+}
+
+
+#country.mb-2.mr-2.dropdown-toggle.btn.btn-outline-primary{
+
+    padding-bottom: 10px;
+    width:100%;
+
+}
+
+#save.btn.btn-primary{
+
+    margin-top: 30px;
+
+
+}
