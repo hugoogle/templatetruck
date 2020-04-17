@@ -1,37 +1,27 @@
-colaborador =  JSON.parse(localStorage.getItem("colaborador")); 
-console.log(colaborador);
-equipe =  JSON.parse(localStorage.getItem("equipe")); 
-console.log(equipe);
-
 (function() {
-
-
   
+
     var db = {
 
-
-
-
         loadData: function(filter) {
-            return $.grep(this.colaboradores, function(colaborador) {
-                return (!filter.nome || colaborador.nome.indexOf(filter.nome) > -1)
-                    && (!filter.equipe ||  colaborador.equipe === filter.equipe)
-                    && (!filter.funcao || colaborador.funcao === filter.funcao)
-                    && (filter.ticket === undefined || colaborador.ticket === filter.ticket)
-                    && (!filter.tipo || colaborador.tipo === filter.tipo)
-                 //   && (filter.Married === undefined || colaborador.Married === filter.Married);
+            return $.grep(this.clients, function(client) {
+                return (!filter.Name || client.Name.indexOf(filter.Name) > -1)
+                    && (filter.Age === undefined || client.Age === filter.Age)
+                    && (!filter.Address || client.Address.indexOf(filter.Address) > -1)
+                    && (!filter.Country || client.Country === filter.Country)
+                    && (filter.Married === undefined || client.Married === filter.Married);
             });
         },
 
-        insertItem: function(insertingcolaborador) {
-            this.colaboradores.push(insertingcolaborador);
+        insertItem: function(insertingClient) {
+            this.clients.push(insertingClient);
         },
 
-        updateItem: function(updatingcolaborador) { },
+        updateItem: function(updatingClient) { },
 
-        deleteItem: function(deletingcolaborador) {
-            var colaboradorIndex = $.inArray(deletingcolaborador, this.colaboradores);
-            this.colaboradores.splice(colaboradorIndex, 1);
+        deleteItem: function(deletingClient) {
+            var clientIndex = $.inArray(deletingClient, this.clients);
+            this.clients.splice(clientIndex, 1);
         }
 
     };
@@ -41,49 +31,52 @@ console.log(equipe);
 
     db.countries = [
         { Name: "", Id: 0 },
-        { Name: "MELHORIA", Id: 1 },
-        { Name: "BAIXO", Id: 2 },
-        { Name: "MEDIO", Id: 3 },
-        { Name: "NAO URGENTE", Id: 4 },
-        { Name: "URGENTE", Id: 5 },
-        { Name: "BANCO", Id: 5 },
+        { Name: "United States", Id: 1 },
+        { Name: "Canada", Id: 2 },
+        { Name: "United Kingdom", Id: 3 },
+        { Name: "France", Id: 4 },
+        { Name: "Brazil", Id: 5 },
+        { Name: "China", Id: 6 },
+        { Name: "Russia", Id: 7 }
     ];
 
-  let  arrayEquipe = equipe[0];
- 
-  arrayEquipe.sort(function (a, b) {
-    if (a.nome > b.nome) {
-      return 1;
-    }
-    if (a.nome < b.nome) {
-      return -1;
-    }
-    // a must be equal to b
-    return 0;
-   
-   
-});
-                  
-    db.equipe = arrayEquipe//equipe[0];
-
-
-    db.funcao = [
-        { Name: "", Id: 0 },
-        { Name: "PO", Id: 1 },
-        { Name: "DEVELOPER", Id: 2 },
-        { Name: "TESTER", Id: 3 },
-        { Name: "COORDENADOR", Id: 4 },
-        { Name: "SUPORTE", Id: 5 },
-        { Name: "CONSULTOR", Id: 5 },
+    db.clients = [
+        {
+            "Name": "Otto Clay",
+            "Age": 61,
+            "Country": 6,
+            "Address": "Ap #897-1459 Quam Avenue",
+            "Married": false
+        },
+        {
+            "Name": "Connor Johnston",
+            "Age": 73,
+            "Country": 7,
+            "Address": "Ap #370-4647 Dis Av.",
+            "Married": false
+        },
+        {
+            "Name": "Lacey Hess",
+            "Age": 29,
+            "Country": 7,
+            "Address": "Ap #365-8835 Integer St.",
+            "Married": false
+        },
+        {
+            "Name": "Timothy Henson",
+            "Age": 78,
+            "Country": 1,
+            "Address": "911-5143 Luctus Ave",
+            "Married": false
+        },
+        {
+            "Name": "Ramona Benton",
+            "Age": 43,
+            "Country": 5,
+            "Address": "Ap #614-689 Vehicula Street",
+            "Married": true
+        },
     ];
-
-
-
-
-
-    db.colaboradores = colaborador[0];
-  
-
 
     db.users = [
         {

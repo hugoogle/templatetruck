@@ -25,6 +25,7 @@
 
             <script src="../jsgrid-master/external/jquery/jquery-1.8.3.js"></script>
             <script src="assets/scripts/controller/db.js"></script>
+            <script src="assets/scripts/api/colaborador.js"></script>
 
             <script src="../jsgrid-master/src/jsgrid.core.js"></script>
             <script src="../jsgrid-master/src/jsgrid.load-indicator.js"></script>
@@ -951,11 +952,12 @@
                         },
                         controller: db,
                         fields: [
-                            { name: "Name", type: "text", width: 150 },
-                            { name: "Age", type: "number", width: 50 },
-                            { name: "Address", type: "text", width: 200 },
-                            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
-                            { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+                            { name: "nome", type: "text", width: 150 },
+                            { name: "equipe", type: "select", items: db.equipe, valueField: "codigo", textField: "nome" },
+                            { name: "funcao", type: "select", items: db.funcao, valueField: "Id", textField: "Name" },
+                            { name: "ticket", type: "number", width: 120 },
+                            { name: "tipo", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+                            //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
                             {
                                 type: "control",
                                 modeSwitchButton: false,
@@ -992,11 +994,11 @@
                     var formSubmitHandler = $.noop;
 
                     var showDetailsDialog = function(dialogType, client) {
-                        $("#name").val(client.Name);
-                        $("#age").val(client.Age);
-                        $("#address").val(client.Address);
-                        $("#country").val(client.Country);
-                        $("#married").prop("checked", client.Married);
+                        $("#name").val(client.nome);
+                        $("#age").val(client.ticket);
+                        $("#address").val(client.equipe);
+                        $("#country").val(client.funcao);
+                    //    $("#married").prop("checked", client.Married);
 
                         formSubmitHandler = function() {
                             saveClient(client, dialogType === "Add");
@@ -1018,7 +1020,46 @@
 
                     };
 
-                });
+                    //document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;
+                    GetSelected ();
+                  function GetSelected () {
+                    var sel =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    var opt;
+                    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+                            opt = sel.options[i];
+                            if ( opt.selected === true ) {
+                                break;
+                            }
+                            alert(opt.value)
+                        }
+                        return opt;
+                       
+                   }
+
+                   var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                   var c = document.createElement("option");
+                   c.text = "TODOS";
+                   selectEquipe.options.add(c, 0);
+
+
+                }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </script>
 
                         

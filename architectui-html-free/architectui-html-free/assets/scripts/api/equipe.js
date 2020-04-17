@@ -1,8 +1,10 @@
+var request = new XMLHttpRequest();
+
 equipeApi();
 function equipeApi(){
     
+    localStorage.removeItem('equipe');
 
-    var request = new XMLHttpRequest();
    // localStorage.removeItem('meta');
     
         //var x = document.getElementById("equipeSelect").selectedIndex;
@@ -26,13 +28,18 @@ function equipeApi(){
                 let res = JSON.parse(this.responseText);
                 let equipes = res;
                 
-            /*    for(let i=0; i < equipe.length; i ++){
 
-                    console.log(equipe[i].codigo);
-                    console.log(equipe[i].nome);
-            
-                }
-    */
+
+
+                var arrayEquipe=[]
+                if(JSON.parse(localStorage.getItem("equipe")) != null){
+                    arrayEquipe.push(JSON.parse(localStorage.getItem("equipe")));
+                    }
+   
+                    arrayEquipe.push(res);
+                   var equipeJson = JSON.stringify(arrayEquipe);
+                     localStorage.setItem("equipe", equipeJson);
+
 
                 equipes.forEach( function( equipes ){
                     /// ;  cria elemento option
