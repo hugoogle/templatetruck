@@ -48,8 +48,8 @@ function equipeApi(){
                     /// ; adiciona nome da cidade
                     opt.innerHTML = equipes.nome;
                     opt.value = equipes.codigo;
-                    
                     /// ; adiciona opção no select
+                
                     selEquipe.appendChild(opt);
             
                     /// ; essas linhas de código acima poderiam ser substituídas por:

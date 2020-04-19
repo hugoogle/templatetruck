@@ -19,19 +19,19 @@
                       { name: "nome", type: "text", width: 150,   },
                       { name: "equipe", type: "select", items: db.equipe, valueField: "codigo", textField: "nome" },
                       { name: "funcao", type: "select",title: "Função", items: db.funcao, valueField: "Id", textField: "Name" },
-                      { name: "ticket", type: "number", width: 120 },
+                      { name: "ticket", type: "number", width: 120,  },
                       { name: "tipo", type: "select", items: db.tipo, valueField: "Id", textField: "Name" },
                       //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
                       {
                           type: "control",
                           modeSwitchButton: false,
                           editButton: true,
-                          headerTemplate: function() {
+                        /*  headerTemplate: function() {
                               return $("<button>").attr("type", "button").text("Incluir")
                                   .on("click", function () {
                                       showDetailsDialog("Add", {});
-                                  });
-                          }
+                                  }); 
+                          }*/
                       }
                   ]
               });
@@ -119,12 +119,12 @@
                  
              }
 */
-             var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+       /*      var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
              var c = document.createElement("option");
              c.text = "TODOS";
              selectEquipe.options.add(c, 0);
 
-
+*/
              var selectFuncao =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[3]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
               selectFuncao.options[0].selected = "TODOS";
 
@@ -132,18 +132,17 @@
            var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
             selectTipo.options[0].selected = "TODOS";
 
-            var selectEquipes =  document.getElementById('equipe');
+            var selectEquipes =  document.getElementById('equipeSelect');
             db.equipe.forEach( function( equipe ){
                   let opt = document.createElement("option");
                   opt.innerHTML = equipe.nome;
                   opt.value = equipe.codigo;
+                  var c = document.createElement("option");
                   c.text = "TODOS";
                   selectEquipes.options.add(c, 0);
-                  selectEquipes.appendChild(opt);
                   selectEquipes.options[0].selected = "TODOS"; 
-
+                 
               });
-
 
               var selFuncao =  document.getElementById("funcao")
               db.funcao.forEach( function( funcao ){
