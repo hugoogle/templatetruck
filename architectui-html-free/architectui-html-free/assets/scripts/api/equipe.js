@@ -14,7 +14,7 @@ function equipeApi(){
        let selEquipe = document.getElementById( 'equipeSelect' );
         
         /// ; Limpa as opçoes
-        selEquipe.innerHTML = "";
+    //    selEquipe.innerHTML = "";
         
         /// ; Mostra na tela com display:block
      ///   selEquipe.style.display="block";
