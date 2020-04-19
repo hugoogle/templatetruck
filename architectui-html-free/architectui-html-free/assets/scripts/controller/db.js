@@ -1,5 +1,6 @@
 colaborador =  JSON.parse(localStorage.getItem("colaborador")); 
 console.log(colaborador);
+
 equipe =  JSON.parse(localStorage.getItem("equipe")); 
 console.log(equipe);
 

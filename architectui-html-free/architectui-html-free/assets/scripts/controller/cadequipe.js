@@ -122,8 +122,7 @@
                     
                    var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
                     selectTipo.options[0].selected = "TODOS";
-
-                    equipeApi();
+                   
                     var selectEquipes =  document.getElementById('equipeSelect');
                     var c = document.createElement("option");
                     c.text = "TODOS";

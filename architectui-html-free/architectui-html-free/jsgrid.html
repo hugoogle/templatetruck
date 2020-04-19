@@ -38,7 +38,8 @@
             <script src="../jsgrid-master/src/fields/jsgrid.field.checkbox.js"></script>
             <script src="../jsgrid-master/src/fields/jsgrid.field.control.js"></script>
             <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
+           
+            <script src="./assets/scripts/api/equipe.js"></script>
 
             <!--
                 =========================================================
@@ -831,31 +832,17 @@
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
                                 <label for="equipe">Equipe:</label>
-                                    <select id="equipeSelect" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="equipeSelect">
-                                        <option value=""></option>
-                                        <option value="1">United States</option>
-                                        <option value="2">Canada</option>
-                                        <option value="3">United Kingdom</option>
-                                        <option value="4">France</option>
-                                        <option value="5">Brazil</option>
-                                        <option value="6">China</option>
-                                        <option value="7">Russia</option>
+                                 <div class="row">                                    <select id="equipe" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="equipe">
                                     </select>
-                            </div>
+                                </div>
+
+                                </div>
                         </div>    
                     
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
                             <label for="funcao">Função:</label>
                                     <select id="funcao" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="funcao">
-                                        <option value=""></option>
-                                        <option value="1">United States</option>
-                                        <option value="2">Canada</option>
-                                        <option value="3">United Kingdom</option>
-                                        <option value="4">France</option>
-                                        <option value="5">Brazil</option>
-                                        <option value="6">China</option>
-                                        <option value="7">Russia</option>
                                     </select>
                             </div>
                     </div>    
@@ -879,16 +866,8 @@
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
                             <label for="tipo">Tipo</label>
-                            <select id="tipo" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary form-control" name="tipo">
-                                <option value="">(Select)</option>
-                                <option value="1">United States</option>
-                                <option value="2">Canada</option>
-                                <option value="3">United Kingdom</option>
-                                <option value="4">France</option>
-                                <option value="5">Brazil</option>
-                                <option value="6">China</option>
-                                <option value="7">Russia</option>
-                            </select>
+                            <select id="tipo" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="tipo">
+                               </select>
                             </div>
                         </div>
 
@@ -996,7 +975,7 @@
                     var showDetailsDialog = function(dialogType, client) {
                         $("#nome").val(client.nome);
                         $("#ticket").val(client.ticket);
-                        $("#equipeSelect").val(client.equipe);
+                        $("#equipe").val(client.equipe);
                         $("#funcao").val(client.funcao);
                         $("#tipo").val(client.tipo);
                     //    $("#married").prop("checked", client.Married);
@@ -1013,7 +992,7 @@
                         $.extend(client, {
                             nome: $("#nome").val(),
                             ticket: parseInt($("#ticket").val(),10), 
-                            equipe: parseInt($("#equipeSelect").val(),10),
+                            equipe: parseInt($("#equipe").val(),10),
                             funcao: parseInt($("#funcao").val(), 10),
                             tipo: parseInt($("#tipo").val(), 10),
                             //  Married: $("#married").is(":checked")
@@ -1049,13 +1028,42 @@
                     selectFuncao.options[0].selected = "TODOS";
 
                     
-                   var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                    selectTipo.options[0].selected = "TODOS";
+                 var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                  selectTipo.options[0].selected = "TODOS";
 
+                  var selectEquipes =  document.getElementById('equipe');
+                  db.equipe.forEach( function( equipe ){
+                        let opt = document.createElement("option");
+                        opt.innerHTML = equipe.nome;
+                        opt.value = equipe.codigo;
+                        c.text = "TODOS";
+                        selectEquipes.options.add(c, 0);
+                        selectEquipes.appendChild(opt);
+                        selectEquipes.options[0].selected = "TODOS"; 
 
+                    });
+ 
 
+                    var selFuncao =  document.getElementById("funcao")
+                    db.funcao.forEach( function( funcao ){
+                        let opt = document.createElement("option");
+                        opt.innerHTML = funcao.Name;
+                        opt.value = funcao.Id;
+                        selFuncao.appendChild(opt);
+                        selFuncao.options[0].selected = "TODOS"; 
 
+                    });
 
+                    var selTipo =  document.getElementById("tipo")
+                    db.tipo.forEach( function( tipo ){
+                        let opt = document.createElement("option");
+                        opt.innerHTML = tipo.Name;
+                        opt.value = tipo.Id;
+                        selTipo.appendChild(opt);
+                        selTipo.options[0].selected = "TODOS"; 
+
+                        
+                    });
 
                 }); 
 
