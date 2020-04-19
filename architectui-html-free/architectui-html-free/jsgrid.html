@@ -823,15 +823,15 @@
                 <form id="detailsForm" class="needs-validation" novalidate>
                     <div class="form-row">
                         <div class="col-md-3 mb-3">
-                        <label for="name">Name:</label>
-                        <input id="name" name="name" type="text" class="form-control" id="name" placeholder="Informe o Nome" required/>
+                        <label for="nome">Nome:</label>
+                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Informe o Nome" required/>
 
                         </div>
 
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
-                                <label for="country">Country:</label>
-                                    <select id="country" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="country">
+                                <label for="equipe">Equipe:</label>
+                                    <select id="equipeSelect" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="equipeSelect">
                                         <option value=""></option>
                                         <option value="1">United States</option>
                                         <option value="2">Canada</option>
@@ -846,7 +846,7 @@
                     
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
-                            <label for="country">Country:</label>
+                            <label for="funcao">Função:</label>
                                     <select id="funcao" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="funcao">
                                         <option value=""></option>
                                         <option value="1">United States</option>
@@ -866,8 +866,8 @@
                     
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
-                                <label for="age" >Ticket</label>
-                                <input id="age" name="age" type="number" class="form-control" id="validationTooltip05"
+                                <label for="ticket" >Ticket</label>
+                                <input id="ticket" name="ticket" type="number" class="form-control" id="validationTooltip05"
                                 placeholder="numero do ticket" required>
                                 <div class="invalid-tooltip" style="left: 15px;top: 70px;">
                                     Informe o numero do Ticket.
@@ -878,8 +878,8 @@
                 
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
-                            <label for="country">Tipo</label>
-                            <select id="country" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary form-control" name="country">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary form-control" name="tipo">
                                 <option value="">(Select)</option>
                                 <option value="1">United States</option>
                                 <option value="2">Canada</option>
@@ -903,7 +903,7 @@
                         
                         <div class="col-md-1 mb-1">
                                <div class="details-form-field">
-                                <label for="country">Tipo</label>
+                                <label for="tipo">Tipo</label>
                                 <button type="submit" id="save" >Save</button>
                                </div>
                         </div>
@@ -952,11 +952,11 @@
                         },
                         controller: db,
                         fields: [
-                            { name: "nome", type: "text", width: 150 },
+                            { name: "nome", type: "text", width: 150,   },
                             { name: "equipe", type: "select", items: db.equipe, valueField: "codigo", textField: "nome" },
-                            { name: "funcao", type: "select", items: db.funcao, valueField: "Id", textField: "Name" },
+                            { name: "funcao", type: "select",title: "Função", items: db.funcao, valueField: "Id", textField: "Name" },
                             { name: "ticket", type: "number", width: 120 },
-                            { name: "tipo", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+                            { name: "tipo", type: "select", items: db.tipo, valueField: "Id", textField: "Name" },
                             //{ name: "Married", type: "checkbox", title: "Is Married", sorting: false },
                             {
                                 type: "control",
@@ -975,16 +975,16 @@
                     
                     $("#detailsForm").validate({
                         rules: {
-                            name: "required",
-                            age: { required: true, range: [18, 150] },
-                            address: { required: true, minlength: 10 },
-                            country: "required"
+                            nome: "required",
+//equipe: { required: true, range: [18, 150] },
+  //                          funcao: { required: true, minlength: 10 },
+                            ticket: "required"
                         },
                         messages: {
-                            name: "Please enter name",
-                            age: "Please enter valid age",
-                            address: "Please enter address (more than 10 chars)",
-                            country: "Please select country"
+                            nome: "Please enter name",
+                           // equipe: "Please enter valid age",
+                           // funcao: "Please enter address (more than 10 chars)",
+                            ticket: "Please select country"
                         },
                         submitHandler: function() {
                             formSubmitHandler();
@@ -994,10 +994,11 @@
                     var formSubmitHandler = $.noop;
 
                     var showDetailsDialog = function(dialogType, client) {
-                        $("#name").val(client.nome);
-                        $("#age").val(client.ticket);
-                        $("#address").val(client.equipe);
-                        $("#country").val(client.funcao);
+                        $("#nome").val(client.nome);
+                        $("#ticket").val(client.ticket);
+                        $("#equipeSelect").val(client.equipe);
+                        $("#funcao").val(client.funcao);
+                        $("#tipo").val(client.tipo);
                     //    $("#married").prop("checked", client.Married);
 
                         formSubmitHandler = function() {
@@ -1008,19 +1009,21 @@
                     };
 
                     var saveClient = function(client, isNew) {
+                        alert($("#ticket").val());
                         $.extend(client, {
-                            Name: $("#name").val(),
-                            Age: parseInt($("#age").val(), 10),
-                            Address: $("#address").val(),
-                            Country: parseInt($("#country").val(), 10),
-                            Married: $("#married").is(":checked")
+                            nome: $("#nome").val(),
+                            ticket: parseInt($("#ticket").val(),10), 
+                            equipe: parseInt($("#equipeSelect").val(),10),
+                            funcao: parseInt($("#funcao").val(), 10),
+                            tipo: parseInt($("#tipo").val(), 10),
+                            //  Married: $("#married").is(":checked")
                         });
 
                         $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", client);
 
                     };
 
-                    //document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;
+                 /*   //document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;
                     GetSelected ();
                   function GetSelected () {
                     var sel =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -1035,16 +1038,30 @@
                         return opt;
                        
                    }
-
+*/
                    var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
                    var c = document.createElement("option");
                    c.text = "TODOS";
                    selectEquipe.options.add(c, 0);
 
 
+                   var selectFuncao =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[3]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    selectFuncao.options[0].selected = "TODOS";
+
+                    
+                   var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    selectTipo.options[0].selected = "TODOS";
+
+
+
+
+
+
                 }); 
 
+                
 
+                        
 
 
 
@@ -1072,6 +1089,8 @@
 
 
         <script type="text/javascript" src="./assets/scripts/main.js"></script>
+
+        <script type="text/javascript" src="./assets/scripts/api/equipe.js"></script>
 
 
         </html>

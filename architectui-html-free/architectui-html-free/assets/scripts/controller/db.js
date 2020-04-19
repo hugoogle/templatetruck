@@ -39,8 +39,8 @@ console.log(equipe);
     window.db = db;
 
 
-    db.countries = [
-        { Name: "", Id: 0 },
+    db.tipo = [
+        { Name: "TODOS", Id: 0 },
         { Name: "MELHORIA", Id: 1 },
         { Name: "BAIXO", Id: 2 },
         { Name: "MEDIO", Id: 3 },
@@ -68,7 +68,7 @@ console.log(equipe);
 
 
     db.funcao = [
-        { Name: "", Id: 0 },
+        { Name: "TODOS", Id: 0 },
         { Name: "PO", Id: 1 },
         { Name: "DEVELOPER", Id: 2 },
         { Name: "TESTER", Id: 3 },
