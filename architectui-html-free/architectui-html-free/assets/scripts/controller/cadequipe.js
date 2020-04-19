@@ -70,7 +70,7 @@
               var showDetailsDialog = function(dialogType, client) {
                   $("#nome").val(client.nome);
                   $("#ticket").val(client.ticket);
-                  $("#equipe").val(client.equipe);
+                  $("#equipeSelect").val(client.equipe);
                   $("#funcao").val(client.funcao);
                   $("#tipo").val(client.tipo);
               //    $("#married").prop("checked", client.Married);
@@ -89,7 +89,7 @@
                   $.extend(client, {
                       nome: $("#nome").val(),
                       ticket: parseInt($("#ticket").val(),10), 
-                      equipe: parseInt($("#equipe").val(),10),
+                      equipe: parseInt($("#equipeSelect").val(),10),
                       funcao: parseInt($("#funcao").val(), 10),
                       tipo: parseInt($("#tipo").val(), 10),
                       //  Married: $("#married").is(":checked")
@@ -119,12 +119,20 @@
                  
              }
 */
-       /*      var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+            var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
              var c = document.createElement("option");
              c.text = "TODOS";
              selectEquipe.options.add(c, 0);
 
-*/
+
+
+             
+             var selectEquipeNovo =  document.getElementById('equipeSelect');
+             var c = document.createElement("option");
+             c.text = "TODOS";
+             selectEquipeNovo.options.add(c, 0);
+
+
              var selectFuncao =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[3]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
               selectFuncao.options[0].selected = "TODOS";
 
@@ -132,17 +140,7 @@
            var selectTipo =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[5]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
             selectTipo.options[0].selected = "TODOS";
 
-            var selectEquipes =  document.getElementById('equipeSelect');
-            db.equipe.forEach( function( equipe ){
-                  let opt = document.createElement("option");
-                  opt.innerHTML = equipe.nome;
-                  opt.value = equipe.codigo;
-                  var c = document.createElement("option");
-                  c.text = "TODOS";
-                  selectEquipes.options.add(c, 0);
-                  selectEquipes.options[0].selected = "TODOS"; 
-                 
-              });
+         
 
               var selFuncao =  document.getElementById("funcao")
               db.funcao.forEach( function( funcao ){
