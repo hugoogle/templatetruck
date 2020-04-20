@@ -46,8 +46,9 @@
             });
 
           */  
+
             
-            $("#detailsForm").validate({
+   $("#detailsForm").validate({
                   rules: {
                       nome: "required",
 //equipe: { required: true, range: [18, 150] },
@@ -98,9 +99,16 @@
 
                     
               showDetailsDialog("Add", {});
-        
+             
+
                   $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", client);
 
+
+          // Add the hidden class
+         
+           // alert( activeDiv.classList);      
+       //  activeDiv.classList.remove('needs-validation', 'was-validated');             // Remove the hidden class
+            
               };
 
            /*   //document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.innerHTML;
@@ -166,6 +174,7 @@
               showDetailsDialog("Add", {});
         
 
+      
 
           }); 
 

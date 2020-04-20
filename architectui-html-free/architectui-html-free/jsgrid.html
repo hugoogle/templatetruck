@@ -854,7 +854,7 @@
                             <div class="details-form-field">
                                 <label for="ticket" >Ticket</label>
                                 <input id="ticket" name="ticket" type="number" class="form-control" id="validationTooltip05"
-                                placeholder="numero do ticket" required>
+                                placeholder="numero do ticket" required minlength="6" maxlength="6">
                                 <div class="invalid-tooltip" style="left: 15px;top: 70px;">
                                     Informe o numero do Ticket.
                                 </div>
@@ -882,7 +882,7 @@
                         <div class="col-md-1 mb-1">
                                <div class="details-form-field">
                                 <label for="tipo">Tipo</label>
-                                <button type="submit" id="save" >Save</button>
+                                <button id="limpar" onclick="myFunction()" >Save</button>
                                </div>
                         </div>
 
@@ -926,6 +926,6 @@
         <script type="text/javascript" src="./assets/scripts/controller/cadequipe.js"></script>
         <script src="./assets/scripts/api/equipe.js"></script>
 
-    
+  
  
         </html>
