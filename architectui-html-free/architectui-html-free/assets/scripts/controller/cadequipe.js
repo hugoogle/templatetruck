@@ -46,38 +46,13 @@
             });
 
           */  
-
-         $(function() {
-            $("#myform").validate({
-              rules: {
-                name: {
-                  required: true,
-                  minlength: 2
-                }
-              },
-              highlight: function(element) {
-                $(element).closest('.form-group').removeClass('valid').addClass('invalid');
-              },
-              unhighlight: function(element) {
-                $(element).closest('.form-group').removeClass('invalid').addClass('valid');
-              },
-            });
-          })
-
-
-
-
-
-
-
-
-
-            
+      
    $("#detailsForm").validate({
                   rules: {
                     nome: {
                         required: true,
-                        rangelength: [1, 20]
+                        rangelength: [1, 20],
+                        minlength: 6,
                       },
 
                       equipe: {
@@ -90,11 +65,15 @@
                         }
                   },
                   highlight: function(element) {
-                    $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
-                  },
+                  var a =  $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
+                //    $('#save').attr("disabled", true);
+                    
+                },
                   unhighlight: function(element) {
                     $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid');
-                  },
+                  //  $('#save').removeAttr("disabled");
+              
+                },
 
 
 
@@ -117,7 +96,17 @@
                   $("#equipeSelect").val(client.equipe);
                   $("#funcao").val(client.funcao);
                   $("#tipo").val(client.tipo);
-              //    $("#married").prop("checked", client.Married);
+
+
+                  $('.form-control').removeClass('is-valid');
+                  $('.form-control').removeClass('is-invalid');
+               
+
+                  // $('.form-control').removeClass('is-invalid').addClass('is-valid');
+                  //$("#detailsForm").submit();
+
+                  
+                  //    $("#married").prop("checked", client.Married);
 
                   formSubmitHandler = function() {
                       saveClient(client, dialogType === "Add");
@@ -145,6 +134,8 @@
              
 
                   $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", client);
+
+     
 
 
           // Add the hidden class
