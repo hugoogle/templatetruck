@@ -790,6 +790,8 @@
                                     window.addEventListener('load', function () {
                                         // Fetch all the forms we want to apply custom Bootstrap validation styles to
                                         var forms = document.getElementsByClassName('needs-validation');
+                                        
+                                        var a = document.getElementById('save')
                                         // Loop over them and prevent submission
                                         var validation = Array.prototype.filter.call(forms, function (form) {
                                             form.addEventListener('submit', function (event) {
@@ -797,12 +799,68 @@
                                                     event.preventDefault();
                                                     event.stopPropagation();
                                                 }
-                                                form.classList.add('was-validated');
+                                               // form.classList.add('was-validated');
+                                                
+
+
+
                                             }, false);
                                         });
                                     }, false);
                                 })();
-                            </script>
+            
+                                function send(self){
+                               //  self.reset();
+
+                               $('input[type="submit"]').attr('disabled', true);
+                                
+                               
+                                                                 
+                                $('#nome, #ticket').keyup(function(){
+                                
+                                    if ($('#nome').val() != '' && $('#ticket').val() != '')
+                                    {
+                                     $('input[type="submit"]').attr('disabled' , false);
+                                     }else{
+                                    $('input[type="submit"]').attr('disabled' , true);
+                                    }
+                                });
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               $('input[type="text"]','input[type="number"]').on('keyup',function() {
+                                
+                                if($(this).val() != '') {
+                                     $('input[type="submit"]').attr('disabled' , false);
+                                     }else{
+                                    $('input[type="submit"]').attr('disabled' , true);
+                                }
+                            });
+
+                                 var a = document.getElementById('save')
+                                 if (a.value == "Novo"){
+                              //   self.classList.add('was-validated');
+                                 a.innerText = "Salvar"
+                                }else{
+                                //self.classList.remove('was-validated');
+                                a.innerText = "Novo"
+                                 return false;
+                                }
+            
+                            }
+
+
+
+
+            </script>
 
 
 
@@ -820,8 +878,9 @@
 
         <div class="main-card mb-3 card">                      
             <div id="detailsDialogs" class="card-body">
-                <form id="detailsForm" class="needs-validation" novalidate>
-                    <div class="form-row">
+
+                <form method="post" onsubmit="return send(this);" id="detailsForm" class="needs-validation" novalidate>
+                        <div class="form-row">
                         <div class="col-md-3 mb-3">
                         <label for="nome">Nome:</label>
                         <input name="nome" type="text" class="form-control" id="nome" placeholder="Informe o Nome" required/>
@@ -831,11 +890,22 @@
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
                                 <label for="equipe">Equipe:</label>
-                                 <div class="row">                                    <select id="equipeSelect" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="equipe">
+                                <div class="form-group">
+                                                                  
+                                      <select id="equipeSelect" class="custom-select browser-default" name="equipe" required>
                                     </select>
                                 </div>
 
                                 </div>
+<!--                                <div class="form-group">
+                                    <select class="custom-select browser-default" required>
+                                      <option value="">Open this select menu</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                    <div class="invalid-feedback">Example invalid custom select feedback</div>
+                                  </div>-->
                         </div>    
                     
                         <div class="col-md-2 mb-2">
@@ -852,9 +922,11 @@
                     
                         <div class="col-md-2 mb-2">
                             <div class="details-form-field">
+                                <div class="form-group">
                                 <label for="ticket" >Ticket</label>
-                                <input id="ticket" name="ticket" type="number" class="form-control" id="validationTooltip05"
-                                placeholder="numero do ticket" required minlength="6" maxlength="6">
+                                <input id="ticket" name="ticket" type="number" class="form-control" id="ticket"
+                                placeholder="numero do ticket"  minlength="6" maxlength="6" required>
+                                </div>
                                 <div class="invalid-tooltip" style="left: 15px;top: 70px;">
                                     Informe o numero do Ticket.
                                 </div>
@@ -873,7 +945,7 @@
 
                         <div class="col-md-1 mb-1">
                             <div class="details-form-field">
-                            <button type="submit" id="save" class="btn btn-primary" >Novo</button>
+                            <input type="submit" value ="Novo" id="save" class="btn btn-primary" >Novo</input>
                             
                         
                             </div>

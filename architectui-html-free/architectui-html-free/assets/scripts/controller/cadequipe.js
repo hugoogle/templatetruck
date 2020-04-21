@@ -47,19 +47,62 @@
 
           */  
 
+         $(function() {
+            $("#myform").validate({
+              rules: {
+                name: {
+                  required: true,
+                  minlength: 2
+                }
+              },
+              highlight: function(element) {
+                $(element).closest('.form-group').removeClass('valid').addClass('invalid');
+              },
+              unhighlight: function(element) {
+                $(element).closest('.form-group').removeClass('invalid').addClass('valid');
+              },
+            });
+          })
+
+
+
+
+
+
+
+
+
             
    $("#detailsForm").validate({
                   rules: {
-                      nome: "required",
-//equipe: { required: true, range: [18, 150] },
+                    nome: {
+                        required: true,
+                        rangelength: [1, 20]
+                      },
+
+                      equipe: {
+                        required: true,
+                      },
+
+                      //equipe: { required: true, range: [18, 150] },
 //                          funcao: { required: true, minlength: 10 },
-                      ticket: "required"
+                      ticket: { required: true, minlength: 6,
+                        }
                   },
+                  highlight: function(element) {
+                    $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
+                  },
+                  unhighlight: function(element) {
+                    $(element).closest('.form-control').removeClass('is-invalid').addClass('is-valid');
+                  },
+
+
+
                   messages: {
                       nome: "Please enter name",
-                     // equipe: "Please enter valid age",
+                      equipe: "Selecione uma equipe!",
                      // funcao: "Please enter address (more than 10 chars)",
-                      ticket: "Please select country"
+                      ticket: "Informe o nº com 6 digitos!"
                   },
                   submitHandler: function() {
                       formSubmitHandler();
@@ -130,6 +173,7 @@
             var selectEquipe =  document.evaluate('//*[@id="jsGrid"]/div[1]/table/tbody/tr[2]/td[2]/select', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
              var c = document.createElement("option");
              c.text = "TODOS";
+             c.value = "";
              selectEquipe.options.add(c, 0);
 
 
@@ -138,6 +182,7 @@
              var selectEquipeNovo =  document.getElementById('equipeSelect');
              var c = document.createElement("option");
              c.text = "TODOS";
+             c.value ="";
              selectEquipeNovo.options.add(c, 0);
 
 
