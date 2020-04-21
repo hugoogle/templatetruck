@@ -791,14 +791,15 @@
                                         // Fetch all the forms we want to apply custom Bootstrap validation styles to
                                         var forms = document.getElementsByClassName('needs-validation');
                                         
-                                        var a = document.getElementById('save')
+                                        var save = document.getElementById('save')
                                         // Loop over them and prevent submission
                                         var validation = Array.prototype.filter.call(forms, function (form) {
                                             form.addEventListener('submit', function (event) {
                                                 if (form.checkValidity() === false) {
+                                                  //  a.value = "Incluir"
                                                     event.preventDefault();
                                                     event.stopPropagation();
-                                                }
+                                                }   
                                                // form.classList.add('was-validated');
                                                 
 
@@ -859,7 +860,35 @@
             
                             }
                         */
+                 function validacao() {
+                var $cb = $(this);
+                  let subm =  document.getElementById('save'); 
+                
+                  
+                  if (subm.className == "jsgrid-button jsgrid-insert-button"){
+                     
 
+                  $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
+                    
+                  } 
+                  
+                    let name = document.getElementById('detailsForm')
+                    //invalido
+                    if (!name.checkValidity()) {
+//                        $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
+                            alert('invalido')
+
+                     } else{
+                        $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
+               
+                        alert('valido')
+
+
+                     }
+
+
+            //    $("#jsGrid").jsGrid("option", $cb.attr("id"), $cb.is(":checked"));
+            };
 
 
             </script>
@@ -880,8 +909,8 @@
 
         <div class="main-card mb-3 card">                      
             <div id="detailsDialogs" class="card-body">
-
-                <form method="post" onsubmit="return send(this);" id="detailsForm" class="needs-validation" novalidate>
+<!--method="post" onsubmit="return send(this);"-->
+                <form  id="detailsForm" onsubmit="validacao()" class="needs-validation" novalidate>
                         <div class="form-row">
                         <div class="col-md-3 mb-3">
                         <label for="nome">Nome:</label>
@@ -947,8 +976,11 @@
 
                         <div class="col-md-1 mb-1">
                             <div class="details-form-field">
-                            <input type="submit" value ="Novo" id="save" class="btn btn-primary" >Novo</input>
-                            
+                                <div class="jsgrid">
+                            <input type="submit" value  id="save" class="jsgrid-button jsgrid-insert-button" >
+                            <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
+                            <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                        </div>
                         
                             </div>
                         </div>
