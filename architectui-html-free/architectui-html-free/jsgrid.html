@@ -799,10 +799,11 @@
                                                   //  a.value = "Incluir"
                                                     event.preventDefault();
                                                     event.stopPropagation();
+                        
+                                    
                                                 }   
                                                // form.classList.add('was-validated');
-                                                
-
+                                            
 
 
                                             }, false);
@@ -864,21 +865,33 @@
                 var $cb = $(this);
                   let subm =  document.getElementById('save'); 
                 
-                  
+                  let form = document.getElementById('detailsForm')
+                               
                   if (subm.className == "jsgrid-button jsgrid-insert-button"){
                      
 
                   $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
+
+
+                
+               //   let valid = document.getElementsByClassName('form-control')
+                //  valid.removeClass('is-invalid').addClass('is-valid');
+                    
+                 // for (var i=0; i<valid.length; i++) {
+                   // valid[i].classList.remove('is-invalid');
+                  //  valid.item(i).classList.add('hueframe');
+                    //}
+
                     
                   } 
                   
-                    let name = document.getElementById('detailsForm')
                     //invalido
-                    if (!name.checkValidity()) {
+                    if (!form.checkValidity()) {
 //                        $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
                             alert('invalido')
 
-                     } else{
+                        
+                        } else{
                         $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
                
                         alert('valido')
@@ -911,20 +924,26 @@
             <div id="detailsDialogs" class="card-body">
 <!--method="post" onsubmit="return send(this);"-->
                 <form  id="detailsForm" onsubmit="validacao()" class="needs-validation" novalidate>
-                        <div class="form-row">
-                        <div class="col-md-3 mb-3">
+                        <div class="form-row cadastroCol">
+                        <div class="col-md-3 mb-3 cadColuna" >
                         <label for="nome">Nome:</label>
                         <input name="nome" type="text" class="form-control" id="nome" placeholder="Informe o Nome" required/>
-
+                        <div class="invalid-tooltip">
+                            Por favor informe um nome!
+                          </div>
                         </div>
 
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-2 mb-2 cadColuna">
                             <div class="details-form-field">
                                 <label for="equipe">Equipe:</label>
                                 <div class="form-group">
                                                                   
                                       <select id="equipeSelect" class="form-control" name="equipe" required>
                                     </select>
+                                    <div class="invalid-tooltip">
+                                        Selecione uma equipe!
+                                      </div>
+            
                                 </div>
 
                                 </div>
@@ -939,7 +958,7 @@
                                   </div> -->
                         </div>    
                     
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-2 mb-2 cadColuna">
                             <div class="details-form-field">
                             <label for="funcao">Função:</label>
                                     <select id="funcao" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="funcao">
@@ -951,16 +970,17 @@
                     
                     
                     
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-2 mb-2 cadColuna">
                             <div class="details-form-field">
                                 <div class="form-group">
                                 <label for="ticket" >Ticket</label>
                                 <input id="ticket" name="ticket" type="number" class="form-control" id="ticket"
                                 placeholder="numero do ticket"  minlength="6" maxlength="6" required>
-                                </div>
-                                <div class="invalid-tooltip" style="left: 15px;top: 70px;">
-                                    Informe o numero do Ticket.
-                                </div>
+                                
+                                <div class="invalid-tooltip">
+                                    Nº com 6 digitos!
+                                  </div>
+                            </div>
                             </div>
                         </div>  
                         

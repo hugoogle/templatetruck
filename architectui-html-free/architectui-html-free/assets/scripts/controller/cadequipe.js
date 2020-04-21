@@ -51,8 +51,8 @@
                   rules: {
                     nome: {
                         required: true,
-                        rangelength: [1, 20],
-                        minlength: 6,
+                        rangelength: [1, 10],
+                        minlength: 1,
                       },
 
                       equipe: {
@@ -78,10 +78,10 @@
 
 
                   messages: {
-                      nome: "Please enter name",
-                      equipe: "Selecione uma equipe!",
+                      nome: "",//"Por favor informe o nome!",
+                      equipe: "",//"Selecione uma equipe!",
                      // funcao: "Please enter address (more than 10 chars)",
-                      ticket: "Informe o nº com 6 digitos!"
+                      ticket: "",//"Nº com 6 digitos!"
                   },
                   submitHandler: function() {
                       formSubmitHandler();
