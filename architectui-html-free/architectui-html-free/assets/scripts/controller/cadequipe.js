@@ -59,11 +59,18 @@
                       equipe: {
                         required: true,
                       },
+                      funcao: {
+                        required: true,
+                      },
 
                       //equipe: { required: true, range: [18, 150] },
 //                          funcao: { required: true, minlength: 10 },
                       ticket: { required: true, minlength: 6,
-                        }
+                        },
+                        
+                      funcao: {
+                        required: true,
+                      },
                   },
                   highlight: function(element) {
                   var a =  $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid');
@@ -81,9 +88,10 @@
                   messages: {
                       nome: "",//"Por favor informe o nome!",
                       equipe: "",//"Selecione uma equipe!",
-                     // funcao: "Please enter address (more than 10 chars)",
+                      funcao: "",//"Please enter address (more than 10 chars)",
                       ticket: "",//"Nº com 6 digitos!"
-                  },
+                      tipo: "",  
+                    },
                   submitHandler: function() {
                       formSubmitHandler();
                   }
@@ -99,9 +107,7 @@
                   $("#tipo").val(client.tipo);
 
 
-                  $('.form-control').removeClass('is-valid');
-                  $('.form-control').removeClass('is-invalid');
-               
+                 
 
                   // $('.form-control').removeClass('is-invalid').addClass('is-valid');
                   //$("#detailsForm").submit();
@@ -132,11 +138,11 @@
 
                     
               showDetailsDialog("Add", {});
-             
+              
 
                   $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", client);
 
-     
+                  resetCadastro();
 
 
           // Add the hidden class
@@ -220,7 +226,9 @@
 
          
           function resetCadastro(){
-            var form = $("#detailsForm"),
+            $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
+            $('#editar').removeClass('jsgrid-cancel-edit-button').addClass('jsgrid-edit-button');
+            var form = $("#detailsForm");
             validator = form.validate();
             validator.resetForm();
             form.find(".is-invalid").removeClass("is-invalid");
@@ -230,7 +238,12 @@
             $("#equipeSelect").val(0);
             $("#funcao").val(0);
             $("#tipo").val(0);
-
+            $('#nome').prop("disabled", true);
+            $('#ticket').prop("disabled", true);
+            $('#equipeSelect').prop("disabled", true);
+            $('#funcao').prop("disabled", true);
+            $('#tipo').prop("disabled", true);
+            //$("#GFG :input").prop("disabled", false);
 
       }
 

@@ -41,7 +41,7 @@ console.log(equipe);
 
 
     db.tipo = [
-        { Name: "TODOS", Id: 0 },
+        { Name: "TODOS", Id: "" },
         { Name: "MELHORIA", Id: 1 },
         { Name: "BAIXO", Id: 2 },
         { Name: "MEDIO", Id: 3 },
@@ -69,7 +69,7 @@ console.log(equipe);
 
 
     db.funcao = [
-        { Name: "TODOS", Id: 0 },
+        { Name: "TODOS", Id: "" },
         { Name: "PO", Id: 1 },
         { Name: "DEVELOPER", Id: 2 },
         { Name: "TESTER", Id: 3 },

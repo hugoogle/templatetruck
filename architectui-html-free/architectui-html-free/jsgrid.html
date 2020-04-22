@@ -791,7 +791,7 @@
                                         // Fetch all the forms we want to apply custom Bootstrap validation styles to
                                         var forms = document.getElementsByClassName('needs-validation');
                                         
-                                        var save = document.getElementById('save')
+                                        resetCadastro();
                                         // Loop over them and prevent submission
                                         var validation = Array.prototype.filter.call(forms, function (form) {
                                             form.addEventListener('submit', function (event) {
@@ -799,7 +799,7 @@
                                                   //  a.value = "Incluir"
                                                     event.preventDefault();
                                                     event.stopPropagation();
-                        
+                                                   
                                     
                                                 }   
                                                // form.classList.add('was-validated');
@@ -890,12 +890,17 @@
                     if (!form.checkValidity()) {
 //                        $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
                             alert('invalido')
-
+                        $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
+                            $('#editar').removeClass('jsgrid-cancel-edit-button').addClass('jsgrid-edit-button');
                         
                         } else{
-                        $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
-                        $('#editar').removeClass('jsgrid-cancel-edit-button').addClass('jsgrid-edit-button');
-                        
+                            
+                            $('#nome').prop("disabled", false);
+                            $('#ticket').prop("disabled", false);
+                            $('#equipeSelect').prop("disabled", false);
+                            $('#funcao').prop("disabled", false);
+                            $('#tipo').prop("disabled", false);
+                            
                        
 
 
@@ -934,7 +939,7 @@
                         <div class="form-row cadastroCol">
                         <div class="col-md-3 mb-3 cadColuna" >
                         <label for="nome">Nome:</label>
-                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Informe o Nome" required/>
+                        <input name="nome" type="text" class="form-control"  id="nome" placeholder="Informe o Nome" required/>
                         <div class="invalid-tooltip">
                             Por favor informe um nome!
                           </div>
@@ -968,9 +973,31 @@
                         <div class="col-md-2 mb-2 cadColuna">
                             <div class="details-form-field">
                             <label for="funcao">Função:</label>
-                                    <select id="funcao" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="funcao">
-                                    </select>
-                            </div>
+                           
+                            <div class="form-group">
+                                                                  
+                                <select id="funcao" class="form-control" name="funcao" required>
+                              </select>
+                              <div class="invalid-tooltip">
+                                  Selecione uma função!
+                                </div>
+      
+                          </div>
+
+                           
+                           
+                                </div>
+
+                            
+
+
+
+
+
+
+
+
+
                     </div>    
                     
                     
@@ -982,7 +1009,7 @@
                                 <div class="form-group">
                                 <label for="ticket" >Ticket</label>
                                 <input id="ticket" name="ticket" type="number" class="form-control" id="ticket"
-                                placeholder="numero do ticket"  minlength="6" maxlength="6" required>
+                                placeholder="Numero do ticket"  minlength="6" maxlength="6" required>
                                 
                                 <div class="invalid-tooltip">
                                     Nº com 6 digitos!
@@ -992,12 +1019,20 @@
                         </div>  
                         
                 
-                        <div class="col-md-2 mb-2">
+                        <div class="col-md-2 mb-2 cadColuna">
                             <div class="details-form-field">
-                            <label for="tipo">Tipo</label>
-                            <select id="tipo" class="mb-2 mr-2 dropdown-toggle btn btn-outline-primary" name="tipo">
-                               </select>
-                            </div>
+                                <label for="tipo">Tipo:</label>
+                                <div class="form-group">
+                                                                  
+                                      <select id="tipo" class="form-control" name="tipo" required>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        Selecione um tipo!
+                                      </div>
+            
+                                </div>
+
+                                </div>
                         </div>
 
 
