@@ -871,7 +871,8 @@
                      
 
                   $('#save').removeClass('jsgrid-insert-button').addClass('jsgrid-update-button');
-
+                  $('#editar').removeClass('jsgrid-edit-button').addClass('jsgrid-cancel-edit-button');
+                        
 
                 
                //   let valid = document.getElementsByClassName('form-control')
@@ -893,15 +894,21 @@
                         
                         } else{
                         $('#save').removeClass('jsgrid-update-button').addClass('jsgrid-insert-button');
-               
+                        $('#editar').removeClass('jsgrid-cancel-edit-button').addClass('jsgrid-edit-button');
+                        
+                       
+
+
                         alert('valido')
 
 
                      }
 
-
+                    
             //    $("#jsGrid").jsGrid("option", $cb.attr("id"), $cb.is(":checked"));
             };
+
+
 
 
             </script>
@@ -998,8 +1005,8 @@
                             <div class="details-form-field">
                                 <div class="jsgrid">
                             <input type="submit" value  id="save" class="jsgrid-button jsgrid-insert-button" >
-                            <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
-                            <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                            <input id="editar" onclick="resetCadastro()"  class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
+                            <input id="excluir" class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
                         </div>
                         
                             </div>

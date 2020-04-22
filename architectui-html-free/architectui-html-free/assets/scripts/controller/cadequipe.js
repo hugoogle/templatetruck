@@ -48,6 +48,7 @@
           */  
       
    $("#detailsForm").validate({
+    
                   rules: {
                     nome: {
                         required: true,
@@ -215,6 +216,24 @@
           }); 
 
                
+
+
+         
+          function resetCadastro(){
+            var form = $("#detailsForm"),
+            validator = form.validate();
+            validator.resetForm();
+            form.find(".is-invalid").removeClass("is-invalid");
+            form.find(".is-valid").removeClass("is-valid");
+            $("#nome").val("");
+            $("#ticket").val("");
+            $("#equipeSelect").val(0);
+            $("#funcao").val(0);
+            $("#tipo").val(0);
+
+
+      }
+
 
 
 
